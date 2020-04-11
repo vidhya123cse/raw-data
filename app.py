@@ -22,6 +22,7 @@ class User(db.Model):
         self.username=username
         self.password=password
         self.type=type
+    
 class Admin(db.Model):
     __tablename__ = 'Admin'
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
@@ -64,13 +65,13 @@ class Authority(db.Model):
 class Ordinary(db.Model):
     __tablename__ = 'Ordinary'
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
-    fname = db.Column(db.String(20))
-    lname = db.Column(db.String(20))
+    fname = db.Column(db.String(30))
+    lname = db.Column(db.String(30))
     phone = db.Column(db.Integer)
-    mail = db.Column(db.String(20))
-    state = db.Column(db.String(20))
-    city = db.Column(db.String(20))
-    proof=db.Column(db.BLOB)
+    mail = db.Column(db.String(30))
+    state = db.Column(db.String(30))
+    city = db.Column(db.String(30))
+    proof=db.Column(db.String(40))
     address=db.Column(db.String(50))
     zip = db.Column(db.Integer)
     usr_name = db.Column(db.String, db.ForeignKey('User.username'),nullable=False)
@@ -118,6 +119,8 @@ class Other(db.Model):
         self.end_time=end_time
         self.live_recording_no=live_recording_no
         self.usr_name=usr_name
+
+    
 
 
 
