@@ -29,7 +29,7 @@ class Admin(db.Model):
     lname = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     mail = db.Column(db.String(50))
-    admin_id=db.column(db.Integer)
+    admin_id=db.Column(db.Integer)
     usr_name = db.Column(db.String, db.ForeignKey('User.username'),nullable=False)
 
     def __init__(self,usr_name,fname,lname,phone,mail,admin_id):
@@ -82,9 +82,9 @@ class Ordinary(db.Model):
         self.lname=lname
         self.phone=phone
         self.mail=mail
-        self.job=job
-        self.proof=proof    
         self.state=state
+        self.proof=proof    
+        self.address=address
         self.city=city
         self.zip=zip
 
@@ -99,14 +99,14 @@ class Other(db.Model):
     third_party_issue_id = db.Column(db.Integer)
     third_party_pending_order = db.Column(db.String(10))
     Third_party_response = db.Column(db.String(20))  #video not available or available
-    date= db.Column(DATE)
-    start_time = db.Column(db.Integer)
-    end_time = db.Column(db.Integer)
+    date= db.Column(db.String(20))
+    start_time = db.Column(db.String(20))
+    end_time = db.Column(db.String(20))
     live_recording_no=db.Column(db.Integer)
     usr_name = db.Column(db.String, db.ForeignKey('User.username'),nullable=False)
     
 
-    def __init__(self,admin_approval,admin_id,no_of_video_upload,no_of_video_request,third_party_issue_id,third_party_pending_order,Third_party_response,date,start_time,end_time,usr_name):
+    def __init__(self,admin_approval,admin_id,no_of_video_upload,no_of_video_request,third_party_issue_id,third_party_pending_order,Third_party_response,date,start_time,end_time,live_recording_no,usr_name):
         self.admin_approval=admin_approval
         self.admin_id=admin_id
         self.no_of_video_request=no_of_video_upload
@@ -118,6 +118,8 @@ class Other(db.Model):
         self.end_time=end_time
         self.live_recording_no=live_recording_no
         self.usr_name=usr_name
+
+
 
 class Third(db.Model):
     __tablename__ = 'Third'
@@ -137,6 +139,8 @@ class Third(db.Model):
         self.mail=mail
         self.third_party_id=third_party_id
         
+
+
 
 
 
