@@ -1,6 +1,5 @@
 from flask import Flask,render_template,flash, redirect,url_for,session,logging,request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.dialects.oracle import BLOB,DATE
 
 
 
@@ -49,7 +48,7 @@ class Authority(db.Model):
     phone = db.Column(db.Integer)
     mail = db.Column(db.String(50))
     job = db.Column(db.String(50))
-    proof=db.Column(db.BLOB)
+    proof=db.Column(db.String(40))
     confirm=db.Column(db.Boolean,unique=False, default=False)
     usr_name = db.Column(db.String, db.ForeignKey('User.username'),nullable=False)
     
@@ -103,7 +102,7 @@ class Other(db.Model):
     no_of_video_request = db.Column(db.Integer)
     third_party_issue_id = db.Column(db.Integer)
     third_party_pending_order = db.Column(db.String(10))
-    Third_party_response = db.Column(db.String(20))  #video not available or available
+    third_party_response = db.Column(db.String(20))  #video not available or available
     date= db.Column(db.String(20))
     start_time = db.Column(db.String(20))
     end_time = db.Column(db.String(20))
@@ -111,18 +110,19 @@ class Other(db.Model):
     usr_name = db.Column(db.String, db.ForeignKey('User.username'),nullable=False)
     
 
-    def __init__(self,admin_approval,admin_id,no_of_video_upload,no_of_video_request,third_party_issue_id,third_party_pending_order,Third_party_response,date,start_time,end_time,live_recording_no,usr_name):
+    def __init__(self,admin_approval,admin_id,no_of_video_upload,no_of_video_request,third_party_issue_id,third_party_pending_order,third_party_response,date,start_time,end_time,live_recording_no,usr_name):
         self.admin_approval=admin_approval
         self.admin_id=admin_id
         self.no_of_video_request=no_of_video_upload
         self.third_party_issue_id=third_party_issue_id
         self.third_party_pending_order=third_party_pending_order
-        self.Third_party_response=Third_party_response
+        self.third_party_response=third_party_response
         self.date=date    
         self.start_time=start_time
         self.end_time=end_time
         self.live_recording_no=live_recording_no
         self.usr_name=usr_name
+
 
     
 
