@@ -50,6 +50,7 @@ class Authority(db.Model):
     mail = db.Column(db.String(50))
     job = db.Column(db.String(50))
     proof=db.Column(db.BLOB)
+    verify = db.Column(db.String(20))
     usr_name = db.Column(db.String, db.ForeignKey('User.username'),nullable=False)
     
 
@@ -74,6 +75,7 @@ class Ordinary(db.Model):
     proof=db.Column(db.String(40))
     address=db.Column(db.String(50))
     zip = db.Column(db.Integer)
+    verify = db.Column(db.String(20))
     usr_name = db.Column(db.String, db.ForeignKey('User.username'),nullable=False)
     
 
