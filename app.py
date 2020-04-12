@@ -50,18 +50,19 @@ class Authority(db.Model):
     mail = db.Column(db.String(50))
     job = db.Column(db.String(50))
     proof=db.Column(db.BLOB)
-    verify = db.Column(db.String(20))
+    confirm=db.Column(db.Boolean,unique=False, default=False)
     usr_name = db.Column(db.String, db.ForeignKey('User.username'),nullable=False)
     
 
-    def __init__(self,usr_name,fname,lname,phone,mail,job,proof):
+    def __init__(self,usr_name,fname,lname,phone,mail,job,proof,confirm):
         self.usr_name=usr_name
         self.fname=fname
         self.lname=lname
         self.phone=phone
         self.mail=mail
         self.job=job
-        self.proof=proof    
+        self.proof=proof 
+        self.confirm=confirm
 
 class Ordinary(db.Model):
     __tablename__ = 'Ordinary'
@@ -75,11 +76,11 @@ class Ordinary(db.Model):
     proof=db.Column(db.String(40))
     address=db.Column(db.String(50))
     zip = db.Column(db.Integer)
-    verify = db.Column(db.String(20))
+    confirm=db.Column(db.Boolean,unique=False, default=False)
     usr_name = db.Column(db.String, db.ForeignKey('User.username'),nullable=False)
     
 
-    def __init__(self,usr_name,fname,lname,phone,mail,state,city,address,zip,proof):
+    def __init__(self,usr_name,fname,lname,phone,mail,state,city,address,zip,proof,confirm):
         self.usr_name=usr_name
         self.fname=fname
         self.lname=lname
@@ -90,6 +91,7 @@ class Ordinary(db.Model):
         self.address=address
         self.city=city
         self.zip=zip
+        self.confirm=confirm
 
 
 class Other(db.Model):
